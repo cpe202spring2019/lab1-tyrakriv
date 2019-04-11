@@ -20,12 +20,21 @@ class TestLab1(unittest.TestCase):
         """Tests the eq function to determine if a location matches its description"""
         loc1 = Location("SLO", 35.3, -120.7)
         self.assertTrue(loc1 == Location("SLO", 35.3, -120.7))
-        
-        """Tests if the locations of Tokyo and Seattle are the same"""
+
         loc2 = Location("Tokyo", 178.2, -5.4)
         loc3 = Location("Seattle", 70.8, -117.3)
+        loc4 = Location("Seattle", 70.8, -117.3)
+        loc5 = loc1
+
+        """Tests if the locations of Tokyo and Seattle are the same"""
         self.assertFalse(loc2 == loc3)
 
+        """Tests loc3 against loc4"""
+        self.assertTrue(loc3 == loc4)
+
+        """Tests if loc1 against loc5"""
+        self.assertTrue(loc1 == loc5)
+        
     def test_init(self):
         """Checks init function to determine if the objects in the class are correct"""
         loc1 = Location("SLO", 35.3, -120.7)

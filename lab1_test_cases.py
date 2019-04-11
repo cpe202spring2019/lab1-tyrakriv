@@ -17,6 +17,27 @@ class TestLab1(unittest.TestCase):
         """finds the maximum value in given list"""
         tlist3 = [-2,3,4,57,100293,32,-343084]
         self.assertEqual(max_list_iter(tlist3), 100293)
+
+        """finds max value in positive list"""
+        tlist4 = [1,2,3]
+        self.assertEqual(max_list_iter(tlist4), 3)
+
+        """finds max value in decimal and integers"""
+        tlist5 = [5.4,4.8,3,3]
+        self.assertAlmostEqual(max_list_iter(tlist5), 5.4)
+
+        """finds max value in float list"""
+        tlist6 = [4.8,5.4,3.3]
+        self.assertAlmostEqual(max_list_iter(tlist6), 5.4)
+
+        """finds max value of negative list"""
+        tlist7 = [-3,-1,-6]
+        self.assertAlmostEqual(max_list_iter(tlist7), -1)
+
+        """finds max value of list with one item"""
+        tlist8 = [9]
+        self.assertAlmostEqual(max_list_iter(tlist8), 9)
+
     
     def test_reverse_rec(self):
         """checks to determine if given list is reversed"""
@@ -33,6 +54,15 @@ class TestLab1(unittest.TestCase):
         """checks to see if [] are returned if list = []"""
         tlist2 = []
         self.assertEqual(tlist2, [])
+
+        """checks float list"""
+        self.assertEqual(reverse_rec([5.4,4.3,2.2]),[2.2,4.3,5.4])
+
+        """checks a list with one value"""
+        self.assertEqual(reverse_rec([-1]),[-1])
+
+        """checks list with negatives"""
+        self.assertEqual(reverse_rec([-3,-4,-5]),[-5,-4,-3])
 
     def test_bin_search(self):
         """finds the index of the target value, 4, given the parameters"""
@@ -59,6 +89,36 @@ class TestLab1(unittest.TestCase):
         low4 = 0
         high4 = 4
         self.assertEqual(bin_search(-8, low4, high4, list_val4), 1)
+
+        """checks if index is not found"""
+        list_val5 = [-9,-8,-7,-6,-5,-4,-3,-2,-1]
+        low5 = 0
+        high5 = 4
+        self.assertEqual(bin_search(5, low5, high5, list_val5), None)
+
+        list_val6 =[0,1,2,3,4]
+        low6 = 0
+        high6 = len(list_val)-1
+        """checks if index is in the middle"""
+        self.assertEqual(bin_search(2, 0, len(list_val6)-1, list_val6), 2 )
+
+        """checks an empty list"""
+        self.assertEqual(bin_search(2, 0, len(list_val6)-1, []), None)
+        
+        """checks float list"""
+        self.assertEqual(bin_search(0.3,0,3,[0.1,0.2,0.3,0.4]), 2)
+
+        """checks if low and high is the same value"""
+        self.assertEqual(bin_search(5,0,0,[5]),0)
+
+        """checks when low and high do not contain the search value"""
+        self.assertEqual(bin_search(2,3,4,[1,2,3,4,5]),None)
+
+        """checks when low and high do not contain the search value"""
+        self.assertEqual(bin_search(5,0,3,[1,2,3,4,5]),None)
+
+        """checks if value is not in the list"""
+        self.assertEqual(bin_search(3,0,4,[0,1,2,4,5]),None)
         
 if __name__ == "__main__":
         unittest.main()
